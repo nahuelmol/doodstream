@@ -1,0 +1,7 @@
+/nim
+/videos
+/js
+/node_modules
+/html
+.env
+*.exe
