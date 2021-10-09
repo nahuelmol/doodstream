@@ -7,9 +7,22 @@ load_dotenv(verbose=True)
 
 API_KEY = os.getenv('DOOD_API_KEY')
 
+def search_file():
+	file 	= 'DB'
+	url 	= 'https://doodapi.com/api/search/videos?key=' + API_KEY
+
+	url_file = url + '&search_term='+ file 
+	response = requests.get(url_file)
+
+	res_str = response.content.decode('utf-8')
+	res 	= json.loads(res_str)
+
+	for each in res['result']:
+		print(each['title'])
+
 def send_subtitle():
 	remote_sub 	= 'https://example.com/sub.vtt'
-	local_sub  	= 'sub.srt'
+	local_sub  	= 'subs/"[Utsukushii-Raws] Dragon Ball - 003 (DVD 720x480 H264 AC3 2.0 Chap Sub).srt"'
 	url 		= 'https://dood.so/e/xxx?c1_file='+ local_sub +'&c1_label=Japanese'
 
 	res = requests.get(url)
@@ -38,4 +51,4 @@ def get_link_to_upload():
 
 
 if __name__ == '__main__':
-	get_file_list()
+	search_file()
